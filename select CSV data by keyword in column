@@ -1,0 +1,26 @@
+import csv
+import pandas as pd
+import numpy as np
+
+CSV_FILE='C:\\Users\\mobarget\\Documents\\IslandsZOTERO.csv'
+
+with open(CSV_FILE, encoding="utf-8") as f:
+    data = pd.read_csv(f, sep=",")
+    data_by_col=(data[['Place']]) # Retrieve data from selected column
+    print(data_by_col) # Print data from selected column
+    
+    data_selected=data[data.Place == 'Konstanz'] # Select data by searchterm in selected column
+    print(data_selected) # Print entries that contain searchterm
+    
+    data_index=[] # Find line indeces for result entries
+    data_index=data_selected.index.tolist()
+    print(data_index) # Print indeces of result entries
+    
+    result_list=[] # Add lines selected by indeces to result list
+    for i in data_index:
+        result_list.append(data.iloc[i])
+        print(result_list) # Print result list
+    
+with open('C:\\Users\\mobarget\\Documents\\IslandResults.csv','a', encoding="utf-8") as output:
+    writer = csv.writer(output, dialect='excel')
+    writer.writerow(result_list) # Write result list to new CSV file
