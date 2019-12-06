@@ -1,0 +1,11 @@
+import csv
+import pandas as pd
+import numpy as np
+
+CSV_FILE='C:\\Users\\mobarget\\Documents\\IslandsZOTERO.csv'
+CSV_OUTPUT='C:\\Users\\mobarget\\Documents\\ZOTERO_selection.csv'
+
+with open(CSV_FILE, encoding="utf-8") as f:
+    data = pd.read_csv(f, sep=",")
+    data_selected=data[data.Place == 'Konstanz']
+    data_selected.to_csv(CSV_OUTPUT)
