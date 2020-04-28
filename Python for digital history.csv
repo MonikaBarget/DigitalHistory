@@ -1,0 +1,48 @@
+﻿Name,Type,Installation,Usage,Additional information
+Anaconda                ,environment,extra,data science / data visualisation platform including several powerful libraries,
+beautifulsoup4 ,package,extra,accessing structured data (also web-based),This package can handle HTML as well as XML.
+Bokeh,package,,"creating interactive data visualizations in a web browser, e. g. network graphs and maps","No outside libraries, such as NumPy or Pandas, are required but compatible. Documentation on: https://docs.bokeh.org/en/latest/index.html"
+conda/conda-forge,environment,included in Anaconda,"package, dependency and environment management for different programming languages including Python",
+fiona,package,included in Python3,reading and writing spatial data files,
+Geocoder,package,extra,"georeferencing place names, finding place names for given geodata",Geocoder connects with different APIs such as Geonames and Google. Please view the documentation on GitHub.
+geopandas               ,package,"extra, preferrably via Conda, see advice on: http://geopandas.org/install.html#installation","geographic “pandas” extensions, working with geospatial data in python (e.g. preparing geographic geometries for analysis in “shapely”), allows operations similar to a spatial database ",The use of Geopandas requires APIs for geodata services. It is a good alternative for full GIS software if data sets are smaller and do not need to be edited collaboratively. A common installation error is adressed here: https://stackoverflow.com/questions/54734667/error-installing-geopandas-a-gdal-api-version-must-be-specified-in-anaconda
+GeoPy,package,extra,"geohumanities, Python client to retrieve geographic information from different web services",
+geos                     ,package,extra,"map server to display maps in a web browser, compatible with google earth",
+Geospatial Data Abstraction package (GDAL),package,extra,package designed for vector geospatial data formats,GDAL is a prerequisite for installing Fiona and (in Anaconda) Geopandas.  
+html5lib,package,included in Python3,parsing HTML,
+jdcal,package,extra,converting between Julian dates and Gregorian calendar dates,
+json5,package,included in Python3,reading and writing JSON files,
+jupyter,web-based interactive development environment,included in Anaconda,metapackage including a browser-based notebook for writing and running Python code,
+lxml             ,package,extra,reading and writing XML and HTML files,Especially recommended for reading well-structured XML.
+matplotlib,package,included in Anaconda,drawing graphs,Developed for science visualisations in general but also useful in the humanities.
+Miniconda,environment,,"easy way of creating virtual environments, Python installation across operating systems",
+networkx,package,included in Anaconda,"creation, manipulation, and study of the structure, dynamics, and functions of complex networks",useful for social network analysis in the humanities
+numpy                  ,package,included in Anaconda,data analysis and science computing,
+pandas             ,package,included in Anaconda,data analysis,
+path (formerly: path.py)                 ,package,included in Python3,accessing and creating directories on your computer / performing operations on files identified by directory location,
+pathlib2,package,included in Python3,accessing and manipulating paths/directories on your computer,
+pyzotero,package,extra,manipulating ZOTERO bibliographies,This package is especially useful for batch-editing tags.
+requests,package,included in Python3,non-GMO http package / accessing data via URL,
+seaborn,package,extra,statistical data visualisation package based on matplotlib,can be used for the visualisation of NLP results in different types of graps
+selenium,package,extra,"web scraping, web automation (especially in cases where passwords / log-in data are required)",
+simplegui,package,extra,making GUI generation in Tkinter easier,
+tkinter,package,included in Python3,creating simple graphic user interfaces (GUIs),
+urllib2,package,extra ,extensible package for opening URLs,
+xml.etree.ElementTree ,package,extra,parsing and creating XML data,Especially recommended for reading well-structured XML.
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,
+,,,,
+,,,
+,,,,
+,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
