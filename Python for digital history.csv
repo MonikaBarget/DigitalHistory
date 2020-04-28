@@ -1,4 +1,4 @@
-Name,Type,Installation,Usage,Additional information
+Name:,Type:,Installation:,Usage:,Additional information:
 Anaconda                ,environment,extra,data science / data visualisation platform including several powerful libraries,
 beautifulsoup4 ,package,extra,accessing structured data (also web-based),This package can handle HTML as well as XML.
 Bokeh,package,,"creating interactive data visualizations in a web browser, e. g. network graphs and maps","No outside libraries, such as NumPy or Pandas, are required but compatible. Documentation on: https://docs.bokeh.org/en/latest/index.html"
