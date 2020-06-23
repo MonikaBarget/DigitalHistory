@@ -1,4 +1,4 @@
-# Generate word cloud from several WORD documents using tri-lingual stopwords
+# Generate word cloud from multiple .TXT documents using tri-lingual stopwords
 
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt 
@@ -11,7 +11,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 # nltk.download('punkt')
 
-# read WORD files from directory and convert them to plain text
+# read all .TXT files from directory and merge
 
 in_directory=("C:\\Users\\mobarget\\Google Drive\\ACADEMIA\\FBIIIProtokolle_TXT")
 fnames=(os.listdir(in_directory))
