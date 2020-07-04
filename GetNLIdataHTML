@@ -1,0 +1,27 @@
+# get newspapers data from Irish news archive website
+
+import requests
+import shutil
+import os
+
+# URL and IDs to be called
+
+NLI="http://www.nli.ie/en/NewspapersDetails.aspx?IndexNo=" # itemID needs to be added
+itemIDs=range(20000) # range of NLI item IDS
+
+# get data and write to new file
+
+for ID in itemIDs:
+    try:
+        url=str.join(NLI, str(ID)) # merge NLI URL and item ID as string
+        print(url) # output new URL
+        r = requests.get(url, stream=True) # call and stream URL
+        file_name = url.rpartition('/')[-1] # define name for output file
+        with open(os.path.join("C:\\Users\\mobarget\\Google Drive\\ACADEMIA\\10_Data analysis_PhD", file_name), 'wb') as f: # write file
+            r.raw.decode_content = True
+            shutil.copyfileobj(r.raw, f)  
+    except:
+        print("ID not found")
+        continue
+        
+print("Done")
