@@ -1,0 +1,42 @@
+# Initial code improved thanks to feedback on Stackoverflow: https://stackoverflow.com/questions/62735201/extracting-several-next-siblings-from-html-with-beautifulsoup/62745579#62745579
+
+# import packages
+
+from bs4 import BeautifulSoup
+import os
+from os.path import dirname, join
+directory=("C:\\Users\\mobarget\\Google Drive\\ACADEMIA\\10_Data analysis_PhD\\NLI Newspaper DB")
+
+# read downloaded HTML files
+
+for infile in os.listdir(directory):
+    filename=join(directory, infile)
+    indata=open(filename,"r", encoding="utf-8", errors="ignore") 
+    contents = indata.read()
+    soup = BeautifulSoup(contents, 'html.parser')
+    newspaper=soup.find('h1')
+    if newspaper:
+        try:
+            # read data from tags
+        
+            title = soup.h1.text
+            place = soup.select_one('span:contains("Place of publication:")').next_sibling.strip()
+            dates = soup.select_one('span:contains("Publication dates:")').next_sibling.strip()
+            notes = soup.select_one('span:contains("Notes:")').next_sibling.strip()
+            freq = soup.select_one('span:contains("Frequency:")').next_sibling.strip()
+
+            # print results
+
+            print("Title of file no.", str(infile), ": ", title)
+            print(place)
+            print(dates)
+            print(notes)
+            print(freq)
+
+            # exception handling if attributes are missing
+
+        except AttributeError:
+            print("no data")
+            
+    else:
+        continue
