@@ -12,7 +12,7 @@ import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 
-# call custom NLTK stopword list
+# call custom NLTK stopword list, stored locally in nltk-data folder
 
 my_stopwords=stopwords.words('en_fr_de')
 
