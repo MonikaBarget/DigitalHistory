@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import NoSuchElementException
+import csv
 
 # open a new Firefox session
 
@@ -16,10 +17,10 @@ driver.maximize_window()
 
 print("Browser opened.")
 
-QueryURL="https://www.worldcat.org/search?q=kw%3Asermon+ti%3Ariot+OR+revolt+OR+rebellion&fq=yr%3A1684..1800+%3E+%3E+ln%3Aeng&dblist=638&start="
+QueryURL="https://www.worldcat.org/search?q=kw%3Asermon+ti%3Ariot+OR+revolt+OR+rebellion&fq=yr%3A1684..1750+%3E+%3E+ln%3Aeng&dblist=638&start="
 EndURL="&qt=page_number_link"
-result_IDs=range(1, 6773) # indicate total number of results found for this search
-result_page_IDs=(11, 6771) # selecting 10 results per page
+#result_IDs=range(1, 4600) # refers to maximal number of results # result-1078
+result_page_IDs=range(1, 4590, 10) # selecting 10 results per page with 500 pages max. displayed
 
 # define target URL 
 for p in result_page_IDs:
@@ -43,13 +44,16 @@ for p in result_page_IDs:
 # or download full HTML
 # data are also stored in ID "util-em-note"
             try:
-                tr1=driver.find_elements_by_xpath('//h1[@class="title"]') # CANNOT FIND DATA!!!
+                tr1=driver.find_element_by_css_selector("h1.title").text
                 tr2=driver.find_element_by_id("bib-author-cell").text
                 tr3=driver.find_element_by_id("bib-publisher-cell").text
                 tr4=driver.find_element_by_id("bib-itemType-cell").text
             except NoSuchElementException:
                 pass
-            print(tr2, tr3, tr4)
+            print(tr1, tr2, tr3, tr4)
+            with open ("C:\\Users\\mobarget\\Google Drive\\ACADEMIA\\10_Data analysis_PhD\\Sermons.csv", "w", encoding="utf-8") as csvfile:
+                filewriter= csv.writer(csvfile, delimiter=',')
+                filewriter.writerow([tr1, tr2, tr3, tr4])
             driver.back()
 
     print("Results from", p, "to", p+10, "added. Moving on!")
