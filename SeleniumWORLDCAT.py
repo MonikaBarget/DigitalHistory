@@ -40,8 +40,7 @@ for p in result_page_IDs:
             print(s)
             driver.find_element_by_id(s).click()
         
-# add individual item to ZOTERO library
-# or download full HTML
+# add selected bibliographic information to CSV output file
 # data are also stored in ID "util-em-note"
             try:
                 tr1=driver.find_element_by_css_selector("h1.title").text
