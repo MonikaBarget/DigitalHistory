@@ -4,7 +4,7 @@
 
 This repository contains simple scripts in Python designed to help historians prepare data for quantitative analysis and visualization.
 
-![logo](https://github.com/MonikaBarget/DigitalHistory/blob/master/DigitalHistoryLogo.jpg)
+![logo](https://github.com/MonikaBarget/DigitalHistory/blob/master/DigitalHistoryLogo.jpg =150x)
 
 Screen captures of script performances are shared on my ["Digital History" Youtube channel](https://www.youtube.com/channel/UCQZ7G7JopUBIZd3WC9IX6JQ).
 
