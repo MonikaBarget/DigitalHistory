@@ -2,7 +2,7 @@
 
 ## About this repo
 
-This repository contains simple scripts in Python designed to help historians prepare data for quantitative analysis and visualization.
+This repository contains simple scripts in Python designed to help historians prepare data for quantitative analysis and visualization. Many scripts published here are explained and contextualised in the ["Doing Digital History with Python" series](https://dhlab.hypotheses.org/tag/doing-digital-history-with-python).
 
 <img src="https://github.com/MonikaBarget/DigitalHistory/blob/master/DigitalHistoryLogo.jpg" alt="logo" width="150"/>
 
