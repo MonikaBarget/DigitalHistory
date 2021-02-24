@@ -30,19 +30,16 @@ print("The number of items in the sub-collection is: ", my_collection.get('meta'
 items=zot.collection_items(collectionID)
 
 for item in items:
-    try:
-        print('\n Title: %s | Date: %s | Tags: %s' % (item['data']['title'], item['data']['date'], item['data']['tags']))
-    except KeyError:
-        print("\n This item raises exception: ", item['data']['key'])
+    if item['data'].get('date'):
+        print('\n Selected metadata for sub-collection items:\n\n Title: %s | Date: %s | Tags: %s' % (item['data'].get('title', 'no title data'), item['data'].get('date', 'no date data'), item['data'].get('tags', 'no tag data')))
+    else:
+        continue
         
-# @DEVELOPERS: Occurence of KeyError does not seem to follow a particular pattern.
-# I checked the item keys of the entries that triggered the error, and it did not seem to make a difference whether fields were empty or not.
-# Also, special characters in these fields did not seem to be the cause.
+# zotero-dev: why is this result list limited to 100?        
 
-# show all tags for selected sub-collection
+# show all tags for the selected sub-collection
 alltags=zot.collection_tags(collectionID)
-
 print("\n The number of tags used in the sub-collection is: ", len(alltags))
-# @DEVELOPERS: The number of tags displayed here seems to be limited to 100. Why?
+print("\n The tags currently used in the sub-collection are: ", alltags)
 
-print("\n The tags used in the sub-collection are: ", alltags)
+# @zotero-dev: why is the output limited to 100?
