@@ -35,7 +35,7 @@ for item in items:
     else:
         continue
         
-# zotero-dev: why is this result list limited to 100?        
+# @zotero-dev: why is this result list limited to 100?        
 
 # show all tags for the selected sub-collection
 alltags=zot.collection_tags(collectionID)
