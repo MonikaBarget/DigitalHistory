@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[63]:
-
-
 # Script by Monika Barget to manipulate tags in ZOTERO with PyZotero
 # Pyzotero library is available on github 
 # documentation: https://pyzotero.readthedocs.io/en/latest/
@@ -105,14 +102,6 @@ for x in range(10):
 print("\n\n Run time: ", time.process_time(), "seconds") 
 print("DONE")
 
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
