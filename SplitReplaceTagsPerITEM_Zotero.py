@@ -11,10 +11,10 @@ import time
 
 time.process_time() # use time.perf_counter or time.process_time
 
-libnumber='' # add your own user ID for private library or ID in URL of group-library # islands = 2287217 
+libnumber='' # add your own user ID for private library or ID in URL of group-library 
 libtype='group' # “user” or “group”
 libapikey='' # add your own ZOTERO API key generated in your account settings (cf. "feeds-api")
-collectionID=''   # island primary sources = 8S5FKI5W
+collectionID=''   # add your ID
 
 # access your library
 zot=zotero.Zotero(libnumber, libtype, libapikey) 
