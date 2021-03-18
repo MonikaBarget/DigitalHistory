@@ -29,26 +29,27 @@ print("The number of items in the sub-collection is: ", num_entries)
 
 # function to repeat on each set of 100 items
 
-tag_list=[]
-
 def item_details(var):
+    tag_list = []
     print("\n\nALL ITEMS IN COLLECTION:\n\n")
-    for item in all_items:
+    for item in var:
         try:
             item_tags=item['data']['tags']
             print('\n\n Title: %s | Date: %s | Tags: %s' % (item['data']['title'], item['data']['date'], item['data']['tags']))
             for i in item_tags:
                 one_tag=i['tag']
-                #print("\n\n THIS IS A SINGLE TAG: ", one_tag)
-                tag_list.append(one_tag)
-        except KeyError:
-            print("\n\n This item is a WEBPAGE SNAPSHOT: ", item['data']['key'])
+
+            #print("\n\n THIS IS A SINGLE TAG: ", one_tag)
+            tag_list.append(one_tag)
+    except KeyError:
+        print("\n\n This item is a WEBPAGE SNAPSHOT: ", item['data']['key'])
+return var
     
 # get all items
 
 items=zot.collection_items(collectionID) #  get first 100 items
 all_items=zot.everything(items)
-item_details(all_items)
+tag_list=item_details(all_items)
      
 # show tags for selected sub-collection
 
