@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[16]:
-
-
 # Script for manipulating tags in ZOTERO
 # library is available on github 
 # documentation: https://pyzotero.readthedocs.io/en/latest/
 
+# NOTE: this script was the first attempt to replace multiple old tags by several new tags
+# it does not perform well on larger libraries
+# an updated script with a different iteration process has been added to this repository
+
 from pyzotero import zotero 
 import pandas as pd
 
-libnumber='XXXXXXX' # add your own user ID '2287217' for private library or ID in URL of group-library
+libnumber='XXXXXXX' # add your own user ID for private library or ID in URL of group-library
 libtype='group' # “user” or “group”
 libapikey='YYYYYYYYYYYY' # add your own ZOTERO API key generated in your account settings (cf. "feeds-api")
 
@@ -60,8 +60,6 @@ for newtag_flat in newtags_flat:
 
 print("Update completed")
 
-
-# In[ ]:
 
 
 
