@@ -1,0 +1,53 @@
+import os
+import os.path
+from os.path import dirname, join
+import json
+import re
+
+in_directory=("C:\\Users\\mbarg\\Google Drive\\ACADEMIA\\FeministDH for Susan\\6_JSON files Letters 1916-1923\\OPEN4")
+out_directory=("C:\\Users\\mbarg\\Google Drive\\ACADEMIA\\FeministDH for Susan\\7_Transcriptions from JSON files\\\JSON_April27")
+
+items=(os.listdir(in_directory))
+for i in items:
+    filename=os.path.join(in_directory, i)   
+    indata=open(filename,"r", encoding="utf-8", errors="ignore")     
+    jsondata = json.loads(indata.read())
+    print(type(jsondata))
+    print(len(jsondata))
+    
+    for n in range(len(jsondata)):
+        try:
+            outdata = (jsondata[n])
+            if outdata:
+                letter_content1=outdata.get('element')
+                if letter_content1:
+                    letter_content2=json.loads(letter_content1)
+                    letter_content3=letter_content2.get('pages')
+                    for r in range(len(letter_content3)):
+                        letter_content4=letter_content3[r]['transcription']
+           
+                        letter_ID=str(i+str(n)+"."+str(r))  
+            
+                        if letter_content4:
+                            print(letter_ID, ":", letter_content4)
+                            cleanr = re.compile('<.*?>')
+                            cleantext = re.sub(cleanr, ' ', letter_content4)
+                            print(cleantext)
+            
+                            out_file_name=os.path.join(out_directory, str(letter_ID)+".txt")     
+                            out_file=open(out_file_name, "w", encoding="utf-8")
+            
+                            toFile=str(cleantext)
+                            out_file.write(toFile)
+                            out_file.close()
+                            continue
+                        else:
+                            continue
+                else:
+                    continue
+        except KeyError:
+            print("Not found.")
+            continue
+            
+        
+            
