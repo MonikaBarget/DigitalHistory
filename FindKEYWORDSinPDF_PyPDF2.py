@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
-
+# Script to read KEYWORDS from CSV, find them in PDF and store the page numbers in a dictionary of lists.
 
 # PyPDF2
 # https://pythonhosted.org/PyPDF2/PageObject.html
@@ -13,7 +12,7 @@ import csv
 import pandas as pd
 import numpy as np
 
-CSV_FILE='C:\\Users\\mobarget\\Desktop\\Publications BACKUP\\BRILL_INDEX\\BRILL_INDEX_2021-09-04.csv'
+CSV_FILE='[PATH TO LOCAL CSV FILE]'
 
 with open(CSV_FILE, encoding="utf-8", errors="ignore") as f:
     data = pd.read_csv(f, sep=";")
@@ -72,7 +71,7 @@ def extract_information(filename):
                         
 # write dictionary of lists to new .TXT files
    
-            with open(os.path.join('C:\\Users\\mobarget\\Google Drive\\DATA\\BRILL\\BRILL_book.txt'), 'w', encoding="utf-8") as outfile:
+            with open(os.path.join('[PATH TO TXT FILE]'), 'w', encoding="utf-8") as outfile:
                 outfile.write(str(content_all))
                 outfile.close()
                 
@@ -86,55 +85,11 @@ def extract_information(filename):
 # iterate through all PDF files in directoy        
 
 if __name__ == '__main__':
-    path = 'C:\\Users\\mobarget\\Google Drive\\DATA\\BRILL\\BRILL_IN-FILE'
+    path = '[PATH TO DIRECTORY WHERE PDF FILES ARE STORED'
     for p in os.listdir(path):
         filename=(os.path.join(path, p))
         print(filename)
         extract_information(filename)
         
 print("Done")
-
-
-# reading pages first and index words after:
-
-'''
-            for n in range(0, number_of_pages):
-                print("page", n, ":")
-                page = pdf.getPage(n)
-                content=page.extractText()
-                print(content[:50])
-                for i in index_words:
-                    #print(i)
-                    if str(i) in content:
-                        print(i, ":", n)
-                        content_all[i]=n
-                    else:
-                        continue
-'''
-
-'''           
-# check pagination type in file metadata            
-            try:
-                page_label_type = pdf.trailer["/Root"]["/PageLabels"]["/Nums"][1]
-                print(page_label_type)
-                try:
-                    page_label_type = pdf.trailer["/Root"]["/PageLabels"]["/Nums"][1].getObject()
-                    print(page_label_type)
-                except:
-                    print("No /PageLabel object")
-            except:
-                print("No /PageLabel object")
-'''
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
