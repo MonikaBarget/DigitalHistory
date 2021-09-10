@@ -1,4 +1,4 @@
-# script to split plain text before words that have 3 capital letters or more, excluding Roman numbers and archival abbreviations
+# script to split plain text before words that have 3 uppercase letters or more, excluding Roman numerals and archival abbreviations
 # use case: identifying biography entries for individual people in larger file listing early modern academics
 
 import csv
