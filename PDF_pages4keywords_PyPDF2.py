@@ -3,6 +3,9 @@
 
 # Script to read KEYWORDS from CSV, find them in PDF and store the page numbers in a dictionary of lists.
 
+# CAUTION: depending on the quality of the ingested PDF files, PyPDF2 may not perform as reliable as other PDF packages in Python.
+# Please make sure to try alternatives such as PDFtoTEXT as well.
+
 # PyPDF2
 # https://pythonhosted.org/PyPDF2/PageObject.html
 
