@@ -26,9 +26,8 @@ index_words=words
 
 def extract_information(filename):
     with open(filename, 'rb') as f:
-# create dictionary of lists for final results 
-        content_all={}
-# read PDF file
+
+# read PDF file content
         try:
             pdf = pdftotext.PDF(f)
             print("The document has", len(pdf), "pages.")
@@ -37,7 +36,7 @@ def extract_information(filename):
             page_dict={}
             for i in index_words[:100]:
                 print("TRYING TO FIND", i, ":")
-                content_all[i]=[]
+    
                 page_list=[] # create list for page results per word
                 count=0
                 for page in pdf:
@@ -47,19 +46,19 @@ def extract_information(filename):
                         page_list.append(count) # CLASS = LIST
                     else:
                         continue
-# replace word found in text for final index word
+# replace word found in text for final index word according to mapping in CSV file
                 df=DataFrame(data)
                 df_count=(len(page_dict))
                 print(df_count)
                 new_word=df.loc[df.WORD == i, 'MAP TO'] # read new word from data frame with index
                 print(new_word)
                 nw=new_word[df_count] # get new word as string by data frame index
-                print(nw) # print final index word
+                print(nw) # print final index word to replace old synonymes
 # check if nw as key already exists in dict and add OR update values
                 if nw in page_dict():
-                   page_dict.update({nw: page_list}) # PRODUCES ERROR: 'dict' object is not callable
+                   page_dict.update({nw: page_list}) # update values if key exists # PRODUCES ERROR: 'dict' object is not callable
                 else:
-                    page_dict[nw]=page_list
+                    page_dict[nw]=page_list # add values for new key
                 print(page_dict)
                          
 # write dictionary of lists to new .TXT files
@@ -68,7 +67,7 @@ def extract_information(filename):
                 outfile.write(str(page_dict))
                 outfile.close()
                 
-# write each dictionary to one row in new .CSV file
+# write each list in dictionary to one row in new .CSV file
 
             with open('C:\\#####') as x:
                 writer = csv.writer(x)
