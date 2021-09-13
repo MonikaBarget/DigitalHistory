@@ -12,17 +12,19 @@ import os
 
 CSV_FILE='####.csv'
 
+# read keywords as they occur in book from 1st column "WORD" in CSV file
+
 with open(CSV_FILE, encoding="utf-8", errors="ignore") as f:
     data = pd.read_csv(f, sep=";")
     words=data['WORD'].values
     print(len(words))
     print(words[:10])
     
-# define INDEX words
+# define words as preliminary index words to search for page numbers
 
 index_words=words
 
-# open PDF file
+# open book as PDF file 
 
 def extract_information(filename):
     with open(filename, 'rb') as f:
@@ -32,7 +34,7 @@ def extract_information(filename):
             pdf = pdftotext.PDF(f)
             print("The document has", len(pdf), "pages.")
         
-# get PDF content and check index words page by page
+# get PDF content and check index words page by page, starting on page "1"
             page_dict={}
             for i in index_words[:100]:
                 print("TRYING TO FIND", i, ":")
@@ -54,7 +56,7 @@ def extract_information(filename):
                 print(new_word)
                 nw=new_word[df_count] # get new word as string by data frame index
                 print(nw) # print final index word to replace old synonymes
-# check if nw as key already exists in dict and add OR update values
+# check if nw as final key already exists in dict and add OR update values
                 if nw in page_dict():
                    page_dict.update({nw: page_list}) # update values if key exists # PRODUCES ERROR: 'dict' object is not callable
                 else:
