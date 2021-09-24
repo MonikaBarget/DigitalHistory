@@ -11,7 +11,7 @@ import pdftotext
 import os
 from collections import defaultdict
 
-CSV_FILE='C:\\Users\\mobarget\\Desktop\\Publications BACKUP\\BRILL_INDEX\\BRILL_INDEX_DAVID.csv'
+CSV_FILE='C:\\#######\\BRILL_INDEX_12lines.csv' # sample file with just 12 rows to reproduce the error
 
 with open(CSV_FILE, encoding="utf-8", errors="ignore") as f:
     data = pd.read_csv(f, sep=";")
