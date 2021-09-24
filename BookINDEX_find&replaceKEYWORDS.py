@@ -68,13 +68,13 @@ def extract_information(filename):
                 
  # write dictionary of lists to new .TXT files
    
-            with open('C:\\Users\\mobarget\\Google Drive\\ACADEMIA\\BRILL\\BRILL_book.txt', 'w', encoding="utf-8") as outfile:
+            with open('C:\\#####\\BRILL_book.txt', 'w', encoding="utf-8") as outfile:
                 outfile.write(str(page_dict))
                 outfile.close()
                 
 # write each dictionary to one row in new .CSV file
 
-            with open('C:\\Users\\mobarget\\Google Drive\\ACADEMIA\\BRILL\\BRILL_book.csv', 'w', encoding="utf-8") as x:
+            with open('C:\\#####\\BRILL_book.csv', 'w', encoding="utf-8") as x:
                 writer = csv.writer(x)
                 for key, value in page_dict.items():
                     writer. writerow([key, value])
@@ -83,7 +83,7 @@ def extract_information(filename):
 # iterate through all PDF files in directoy        
 
 if __name__ == '__main__':
-    path = 'C:\\Users\\mobarget\\Google Drive\\ACADEMIA\\BRILL\\BRILL_IN-FILE'
+    path = 'C:\\#####\\BRILL_IN-FILE'
     for p in os.listdir(path):
         filename=(os.path.join(path, p))
         extract_information(filename)
