@@ -1,10 +1,10 @@
-# Book index with NLTK frequency counter
+# Script to identify relevant words in a text for developing a book index, project-specific tag list or ontology
+# further data processing (e.g. categorisation) needed
 
 # based on a tutorial by by Abder-Rahman Ali, 12 Dec 2016
-
 # https://code.tutsplus.com/tutorials/preparing-a-book-index-using-python--cms-27556
 
-# use cases: book index for publication, tagging, ontologies
+# possible use cases: preparing a book index for publication, semi-automated tagging, developing ontologies
 
 import nltk, collections
 from nltk.collocations import *
