@@ -11,6 +11,8 @@ from collections import defaultdict
 
 CSV_FILE='C:\\#######\\BRILL_keywords.csv' # sample file containing original keywords and mapping to final index words
 
+# for sample file cf. https://github.com/MonikaBarget/DigitalHistory/blob/master/BRILL_INDEX_12lines.csv
+
 with open(CSV_FILE, encoding="utf-8", errors="ignore") as f:
     data = pd.read_csv(f, sep=";")
     words=data['WORD'].values
