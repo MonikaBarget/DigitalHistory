@@ -1,6 +1,4 @@
-# PyPDF2
-# https://pythonhosted.org/PyPDF2/PageObject.html
-
+# Script for creating a book index
 # get INDEX words from CSV file, find page numbers in PDF, replace synonyme words and combine page numbers
 
 import csv
@@ -11,7 +9,7 @@ import pdftotext
 import os
 from collections import defaultdict
 
-CSV_FILE='C:\\#######\\BRILL_INDEX_12lines.csv' # sample file with just 12 rows to reproduce the error
+CSV_FILE='C:\\#######\\BRILL_keywords.csv' # sample file containing original keywords and mapping to final index words
 
 with open(CSV_FILE, encoding="utf-8", errors="ignore") as f:
     data = pd.read_csv(f, sep=";")
@@ -21,6 +19,12 @@ with open(CSV_FILE, encoding="utf-8", errors="ignore") as f:
 # define INDEX words
 
 index_words=words
+
+# exclude pages containing only bibliographies and endnotes
+
+excluded_pages=[14, 15, 16, 17, 35, 51, 52, 53, 71, 72, 73, 89, 90, 91, 92, 93, 111, 114, 158, 159, 160,
+                161, 162, 163, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 216, 218, 236, 237, 238,
+               239, 257, 258, 259, 260, 284, 285, 286, 287, 288, 308, 309, 310, 311, 312, 313, 314]
 
 # open PDF file
 
@@ -39,16 +43,23 @@ def extract_information(filename):
             content_all[i]=[]
             page_list=[] # create list for page results per word
             count=0
+            j=(str(i)+"'s") # join strings to get keyword in genitive
+            
             for page in pdf:
                 count+=1
-                if i in page:
-                    page_list.append(count) # CLASS = LIST
-                else:
+                if count in excluded_pages:
                     continue
+                else:
+                    if i in page:
+                        page_list.append(count) # CLASS = LIST
+                    if j in page:
+                        page_list.append(count) # CLASS = LIST
+                    else:
+                        continue
 # replace word found in text for final index word
             try:
                 df=DataFrame(data)
-                df_count=(len(page_dict))
+                df_count=int(df[df["WORD"]== i].index.values) # get index number as integer
                 print("POSITION IN DATAFRAME:", df_count)
                 new_word=df.loc[df.WORD == i, 'MAP TO'] # read new word from data frame with index
                 print("WORD IN DATAFRAME:", new_word)
@@ -56,7 +67,7 @@ def extract_information(filename):
                 print("FINAL INDEX WORD", nw) # print final index word
 # check if nw as key already exists in dict and add OR update values
                 if nw in page_dict.keys():
-                    page_dict[nw].extend(page_list)
+                    page_dict[nw].extend(page_list) # extend function creates duplicates
                     print(page_dict)
                 else:
                     page_dict[nw]=page_list
@@ -68,22 +79,23 @@ def extract_information(filename):
                 
  # write dictionary of lists to new .TXT files
    
-            with open('C:\\#####\\BRILL_book.txt', 'w', encoding="utf-8") as outfile:
+            with open('C:\\####\\BRILL_index.txt', 'w', encoding="utf-8") as outfile:
                 outfile.write(str(page_dict))
                 outfile.close()
                 
 # write each dictionary to one row in new .CSV file
 
-            with open('C:\\#####\\BRILL_book.csv', 'w', encoding="utf-8") as x:
+            with open('C:\\####\\BRILL_index.csv', 'w', encoding="utf-8") as x:
                 writer = csv.writer(x)
                 for key, value in page_dict.items():
-                    writer. writerow([key, value])
+# remove bibliography pages, de-depulicate and sort results
+                    writer.writerow([key, sorted(set(value))])
                     f.close()
                        
 # iterate through all PDF files in directoy        
 
 if __name__ == '__main__':
-    path = 'C:\\#####\\BRILL_IN-FILE'
+    path = 'C:\\####\\BRILL_IN-FILE'
     for p in os.listdir(path):
         filename=(os.path.join(path, p))
         extract_information(filename)
