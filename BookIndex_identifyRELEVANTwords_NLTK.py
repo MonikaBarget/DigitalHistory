@@ -1,4 +1,4 @@
-# Script to identify relevant words in a text for developing a book index, project-specific tag list or ontology
+# Script to identify frequent words in a text for developing a book index, project-specific tag list or ontology
 # further data processing (e.g. categorisation) needed
 
 # based on a tutorial by by Abder-Rahman Ali, 12 Dec 2016
