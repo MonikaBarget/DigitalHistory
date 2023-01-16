@@ -11,8 +11,8 @@ import operator
 
 # reading the files
 
-master="C:\\Users\\mobarget\\Desktop\\Supervisor-matching.xlsx"
-path="C:\\Users\\mobarget\\Desktop\\BA DS student preferences 2023" # filepath for input files
+master="C:\\Users\\###\\Desktop\\Supervisor-matching.xlsx"
+path="C:\\Users\\###\\Desktop\\BA DS student preferences 2023" # filepath for input files
 frame_list=[]
 
 df_master=pd.read_excel(master)
@@ -86,8 +86,8 @@ def getdata(student_df):
         teacher_count[p]=t_count # add new value to dictionary
         
     # sort values in dictionary in ascending order to create least contested matches first
-    sorted_teachers = dict(sorted(teacher_count.items(), key=operator.itemgetter(1))) # reverse= True for descending order
-    # get new list of teachers from dictionary
+    sorted_teachers = dict(sorted(teacher_count.items(), key=operator.itemgetter(1))) # use reverse=True for descending order
+    # get ranked list of teachers from dictionary
     teachers_to_match=sorted_teachers.keys() 
     
 # match students with teachers
@@ -160,6 +160,8 @@ def main():
     getdata(student_df) # call first function
     matching(teachers_to_match) # call second function
     not_matched(matches_list) # call third function
+    
+    # repeat until matches with acceptable number of "left-over" students are found
     while num_left>4:
         getdata(student_df) # call first function
         matching(teachers_to_match) # call second function
