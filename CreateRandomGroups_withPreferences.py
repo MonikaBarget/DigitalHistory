@@ -1,7 +1,7 @@
-# Script written to assign students to supervision groups
-# Supervisors accept a different amount of students each between 1 and 6
-# Students indicate a different amount of preferences between 1 and 4 which are not ranked
-# Students indicate preferences by putting their names in the "student" column of spreadsheet
+# Script written to assign students to supervision groups:
+# Supervisors accept a different amount of students between 1 and 6. This information is stored an a spreadsheet not shared with the students.
+# Students may indicate a different amount of preferences between 1 and 4 (not ranked).
+# Students indicate these preferences by putting their names in the "student" column of individually submitted spreadsheets that need to be "merged".
 
 # importing the modules
 import random
@@ -10,22 +10,20 @@ import os
 import operator
 
 # reading the files
-
-master="C:\\Users\\###\\Desktop\\Supervisor-matching.xlsx"
-path="C:\\Users\\###\\Desktop\\BA DS student preferences 2023" # filepath for input files
+master="C:\\Users\\###\\Desktop\\Supervisor-matching.xlsx" # file with internal information for teachers only
+path="C:\\Users\\###\\Desktop\\BA DS student preferences 2023" # filepath for input files submitted by the students
 frame_list=[]
 
 df_master=pd.read_excel(master)
 
 for item in os.listdir(path):
     file=os.path.join(path, item)
-    df_file = pd.read_excel(file) # ignore_index=False, sort=False
+    df_file = pd.read_excel(file)
     frame_list.append(df_file)
 stud_no=len(frame_list)
 print("Number of students registered: ", stud_no)
     
-# merge all student columns in one dataframe
-
+# merge all "student" columns in one dataframe
 counter=0
 for frame in frame_list:
     counter+=1
