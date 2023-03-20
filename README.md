@@ -7,7 +7,7 @@ This repository contains simple scripts in Python designed to help historians pr
 - [Python-related post on my Island Studies research blog](https://insulae.hypotheses.org/tag/python)
 - [Teaching materials concerning distant reading shared on Github](https://github.com/MonikaBarget/DistantReadingMany)
 
-In many cases, no data samples were provided because the data are either owned by other institutions such as archives or because the data come in standardises, reproducable formats (e.g. RDF files exported from publicly available norm data services). Also, this repository is maintained by a historian who can only dedicate a limited amount of time to coding. If you, therefore, cannot make sense of code posted here and require additional information, do not hesitate to contact here.
+In many cases, no data samples were provided because the data are either owned by other institutions such as archives or because the data come in standardises, reproducable formats (e.g. RDF files exported from publicly available norm data services). Also, this repository is maintained by a historian who can only dedicate a limited amount of time to coding. If you, therefore, cannot make sense of code posted here and require additional information, do not hesitate to contact me.
 
 All code is shared for reuse and I am also grateful for suggestions to amend it. As I am normally working with very messy historical data, I tend to prefer redundant code that permits me a lot of intermediate exception handling and print statements in order to capture all special cases. Users working on well-structured and ontologically more consistent data may want to streamline my code samples more, especially if they are working with big data and need efficient script performance. 
 
