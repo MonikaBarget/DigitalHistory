@@ -63,10 +63,8 @@ def extract_information(filename):
                 df=DataFrame(data)
                 df_count=int(df[df["WORD"]== i].index.values) # get index number as integer
                 print("POSITION IN DATAFRAME:", df_count)
-                new_word=df.loc[df.WORD == i, 'MAP TO'] # read new word from data frame with index
-                print("WORD IN DATAFRAME:", new_word)
-                nw=new_word[df_count] # get new word as string by data frame index
-                print("FINAL INDEX WORD", nw) # print final index word
+                nw=df.at[df_count, 'MAP TO'] # get new word as string
+                print("INDEX WORD:", nw) # print final index word
 # check if nw as key already exists in dict and add OR update values
                 if nw in page_dict.keys():
                     page_dict[nw].extend(page_list) # extend function creates duplicates
