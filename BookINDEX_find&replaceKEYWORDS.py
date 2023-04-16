@@ -1,6 +1,8 @@
 # Script for creating a book index
 # get INDEX words from CSV file, find page numbers in PDF, replace synonyme words and combine page numbers
 
+# import packages
+
 import csv
 import pandas as pd
 from pandas import DataFrame
@@ -9,9 +11,11 @@ import pdftotext
 import os
 from collections import defaultdict
 
+# define path for mapping file
+
 CSV_FILE='C:\\#######\\BRILL_keywords.csv' # file containing original keywords and mapping to final index words
 
-# for sample file cf. https://github.com/MonikaBarget/DigitalHistory/blob/master/BRILL_INDEX_12lines.csv
+# sample file: https://github.com/MonikaBarget/DigitalHistory/blob/master/BRILL_INDEX_12lines.csv
 
 with open(CSV_FILE, encoding="utf-8", errors="ignore") as f:
     data = pd.read_csv(f, sep=";")
