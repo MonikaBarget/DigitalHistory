@@ -9,7 +9,7 @@ import pdftotext
 import os
 from collections import defaultdict
 
-CSV_FILE='C:\\#######\\BRILL_keywords.csv' # sample file containing original keywords and mapping to final index words
+CSV_FILE='C:\\#######\\BRILL_keywords.csv' # file containing original keywords and mapping to final index words
 
 # for sample file cf. https://github.com/MonikaBarget/DigitalHistory/blob/master/BRILL_INDEX_12lines.csv
 
