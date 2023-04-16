@@ -1,5 +1,6 @@
 # Script for creating a book index
 # get INDEX words from CSV file, find page numbers in PDF, replace synonyme words and combine page numbers
+# workflow documentation: https://insulae.hypotheses.org/307
 
 # import packages
 
