@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[17]:
-
 
 # Script for creating a ranges of page numbers from lists of individual pages
 # This script can be used to refine a book index.
