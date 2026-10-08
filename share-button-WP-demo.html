@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Share with ready-made post: demo</title>
+  <meta name="description" content="Demo of a share button that offers an editable, ready-made social media post.">
+  <link rel="canonical" href="">
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+    button { font: inherit; padding: .5rem 1rem; border: 1px solid #444; border-radius: 6px; background: #fff; cursor: pointer; }
+    button.primary { background: #1a4d6d; color: #fff; border-color: #1a4d6d; }
+    dialog { border: 1px solid #999; border-radius: 10px; padding: 1.25rem; width: min(32rem, 92vw); }
+    dialog::backdrop { background: rgba(0,0,0,.4); }
+    textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .5rem; }
+    .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; align-items: center; }
+    .count { margin-left: auto; color: #555; font-size: .9rem; }
+    #status { min-height: 1.5em; color: #1a4d6d; }
+  </style>
+</head>
+<body>
+  <article>
+    <h1>An example research blog post</h1>
+    <p>This stands in for a blog post. Press the button below to get a ready-made post that you can edit before sharing.</p>
+    <button id="share-open" class="primary">Share this post</button>
+  </article>
+
+  <dialog id="share-dialog" aria-labelledby="share-title">
+    <h2 id="share-title" style="margin-top:0">Share this post</h2>
+    <p style="margin-top:0">Edit the text if you like, then choose how to share it.</p>
+    <label for="share-text" class="visually-hidden" style="position:absolute;left:-9999px">Post text</label>
+    <textarea id="share-text" rows="6"></textarea>
+    <div class="row">
+      <button id="share-native" class="primary" hidden>Share to app…</button>
+      <button id="share-copy">Copy text</button>
+      <button id="share-mail">Email</button>
+      <button id="share-close">Close</button>
+      <span class="count" id="share-count" aria-live="off"></span>
+    </div>
+    <p id="status" role="status"></p>
+  </dialog>
+
+  <script>
+  (function () {
+    // ---- Configuration (in WordPress this would come from plugin settings) ----
+    var SITE_NAME = 'Hypotheses';
+    var TEMPLATE  = 'I am reading \u201C{title}\u201D on {site}. Check it out: {url}';
+    // ---------------------------------------------------------------------------
+
+    var dlg    = document.getElementById('share-dialog');
+    var ta     = document.getElementById('share-text');
+    var status = document.getElementById('status');
+    var count  = document.getElementById('share-count');
+    var nativeBtn = document.getElementById('share-native');
+
+    function canonicalUrl() {
+      var link = document.querySelector('link[rel="canonical"]');
+      return (link && link.href) || location.href;
+    }
+
+    function buildText() {
+      return TEMPLATE
+        .replace('{title}', document.title)
+        .replace('{site}', SITE_NAME)
+        .replace('{url}', canonicalUrl());
+    }
+
+    function updateCount() { count.textContent = ta.value.length + ' characters'; }
+
+    document.getElementById('share-open').addEventListener('click', function () {
+      ta.value = buildText();
+      status.textContent = '';
+      updateCount();
+      dlg.showModal();
+      ta.focus();
+    });
+
+    ta.addEventListener('input', updateCount);
+    document.getElementById('share-close').addEventListener('click', function () { dlg.close(); });
+
+    // Native share sheet: the URL stays inside the text, so no app shows it twice.
+    if (navigator.share) {
+      nativeBtn.hidden = false;
+      nativeBtn.addEventListener('click', function () {
+        navigator.share({ text: ta.value }).catch(function () {});
+      });
+    }
+
+    document.getElementById('share-copy').addEventListener('click', function () {
+      navigator.clipboard.writeText(ta.value).then(
+        function () { status.textContent = 'Text copied. Paste it wherever you like.'; },
+        function () { ta.select(); status.textContent = 'Press Ctrl/Cmd+C to copy the selected text.'; }
+      );
+    });
+
+    document.getElementById('share-mail').addEventListener('click', function () {
+      location.href = 'mailto:?subject=' + encodeURIComponent(document.title) +
+                      '&body=' + encodeURIComponent(ta.value);
+    });
+  })();
+  </script>
+</body>
+</html>
